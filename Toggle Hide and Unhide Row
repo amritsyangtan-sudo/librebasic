@@ -1,0 +1,48 @@
+Sub ToggleRowVisibility
+    Dim oDoc As Object
+    Dim oSheet As Object
+    Dim isVisible As Boolean
+    
+    ' Get the current document and active sheet
+    oDoc = ThisComponent
+    oSheet = oDoc.CurrentController.ActiveSheet
+    
+    ' Define the row numbers you want to toggle
+    Dim rowsToToggle() As Integer
+    rowsToToggle = Array(0, 1, 4,10) ' Rows 1, 2, and 5 (0-based index)
+    
+    ' Loop through the row numbers and toggle their visibility
+    For Each row In rowsToToggle
+        isVisible = oSheet.Rows(row).IsVisible
+        oSheet.Rows(row).IsVisible = Not isVisible
+    Next row
+End Sub
+
+'Second code to select specified sheet
+Sub ToggleRowVisibility(sheetName As String)
+    Dim oDoc As Object
+    Dim oSheet As Object
+    Dim isVisible As Boolean
+
+    ' Get the current document
+    oDoc = ThisComponent
+
+    ' Try to get the sheet by name
+    On Error Resume Next
+    oSheet = oDoc.Sheets.getByName("MASTER")
+    On Error GoTo 0
+
+    If Not IsEmpty(oSheet) Then
+        ' Define the row numbers you want to toggle
+        Dim rowsToToggle() As Integer
+        rowsToToggle = Array(0, 1, 4, 10) ' Rows 1, 2, and 5 (0-based index)
+
+        ' Loop through the row numbers and toggle their visibility
+        For Each row In rowsToToggle
+            isVisible = oSheet.Rows(row).IsVisible
+            oSheet.Rows(row).IsVisible = Not isVisible
+        Next row
+    Else
+        MsgBox "Sheet '" & sheetName & "' not found.", 16, "Error"
+    End If
+End Sub
