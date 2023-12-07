@@ -15,7 +15,7 @@ Sub CalculateByCharColor()
     
     ' Get the character color of the cell
     
-  	For i = 3 To 240 Step 3
+  	For i = 3 To 240 Step 3 ' start loop from row cell C4 and loop increment by 3 till 240
 		  	oCell = oSheet.getCellByPosition(2,i)  
 			nColor = oCell.CharColor
 			hexValue = Hex(nColor) 'Get the hexvalue of cell
