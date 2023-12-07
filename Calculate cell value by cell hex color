@@ -1,0 +1,39 @@
+Sub CalculateByCharColor()
+    Dim oSheet As Object
+    Dim oCell As Object
+    Dim nRow As Integer
+    Dim nColumn As Integer
+    Dim nColor As Long
+    
+    ' Specify the sheet name and cell coordinates
+    Const sheetName As String = "VisaCreditTicket"
+    ' Access the sheet
+    oSheet = ThisComponent.Sheets.getByName(sheetName)
+    
+    ' Get the cell
+    'oCell = oSheet.getCellByPosition(2,3)
+    
+    ' Get the character color of the cell
+    
+  	For i = 3 To 240 Step 3
+		  	oCell = oSheet.getCellByPosition(2,i)  
+			nColor = oCell.CharColor
+			hexValue = Hex(nColor) 'Get the hexvalue of cell
+	  		If hexValue = "FF0000" Then
+  			    cell2 = oSheet.getCellByPosition(9,i)
+
+  			    value = oCell.getValue()
+  			    calculated = value *-1
+  			    value2 = cell2.setValue(calculated)
+  			    'msgbox value2
+
+  		ElseIf hexValue = "70C0" Then
+  			    cell2 = oSheet.getCellByPosition(8,i)
+
+  			    value = oCell.getValue()
+  			    calculated = value *1
+  			    value2 = cell2.setValue(calculated)
+  		Else
+  		EndIf
+  	Next i	   
+  End Sub
