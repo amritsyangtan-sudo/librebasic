@@ -1,0 +1,31 @@
+Sub ExportRangeToPDF()
+    Dim oSheet As Object
+    Dim oRange As Object
+    Dim oDispatcher As Object
+    Dim oArgs(1) As New com.sun.star.beans.PropertyValue
+    Dim sFilePath As String
+    
+    ' Set the file path for the PDF export
+    sFilePath = "file:///C:/Users/user/OneDrive/Desktop/output.pdf" ' Replace with your desired file path and name
+    
+    ' Get the active sheet (Assuming the macro runs from the Calc document)
+    oSheet = ThisComponent.CurrentController.ActiveSheet
+    
+    ' Define the range to export (A1:C60)
+    oRange = oSheet.getCellRangeByName("A1:C60")
+    
+    ' Create dispatcher
+    oDispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+    
+    ' Set arguments for export
+    oArgs(0).Name = "URL"
+    oArgs(0).Value = sFilePath
+    oArgs(1).Name = "FilterName"
+    oArgs(1).Value = "calc_pdf_Export"
+    
+    ' Execute the export action
+    oDispatcher.executeDispatch(ThisComponent.CurrentController.Frame, ".uno:ExportDirectToPDF", "", 0, oArgs())
+    
+    MsgBox "Export to PDF completed." ' Confirmation message
+End Sub
+
