@@ -1,2 +1,2 @@
-# librebasic
-Libre Office Basic Macro Programming
+# Libre Office Macro Programming
+Libre Office Macro Programming
