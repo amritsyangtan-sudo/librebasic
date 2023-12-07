@@ -20,15 +20,14 @@ Sub CalculateByCharColor()
 			nColor = oCell.CharColor
 			hexValue = Hex(nColor) 'Get the hexvalue of cell
 	  		If hexValue = "FF0000" Then
-  			    cell2 = oSheet.getCellByPosition(9,i)
-
+  			    cell2 = oSheet.getCellByPosition(9,i)  'Get the value in column J if the Column C cell char color is red
   			    value = oCell.getValue()
   			    calculated = value *-1
   			    value2 = cell2.setValue(calculated)
   			    'msgbox value2
 
   		ElseIf hexValue = "70C0" Then
-  			    cell2 = oSheet.getCellByPosition(8,i)
+  			    cell2 = oSheet.getCellByPosition(8,i)  'Get the value in column I if the Column C cell char color is blue
 
   			    value = oCell.getValue()
   			    calculated = value *1
